@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,Http404
-from . models import Image,Profile,Comment,Follow
+from . models import Image,Profile,Comment,Follow,Like
 from .forms import NewImageForm,CommentForm,ProfileUpdateForm
 
 
@@ -121,6 +121,29 @@ def follow(request,profile_id):
 def allfollowers(request):
     allfollowers = Profile.objects.all()
     return render(request,'allfollowers.html',{"allfollowers":allfollowers})
+
+
+def like(request, image_id):
+    getimage = Image.objects.get(id=image_id)
+    current_user = request.user
+    likedpic= Like.objects.filter(image=getimage, user=current_user).count()
+    unlikedpic = Like.objects.filter(image=getimage, user=current_user)
+
+    if likedpic == 0:
+        getimage.likes += 1
+        getimage.save_image()
+        like = Like(user=current_user, image=getimage)
+        like.save_like()
+        return redirect(posted)
+
+    else:
+        getimage.likes -= 1
+        getimage.save_image()
+        for unlike in unlikedpic:
+            unlike.unlike()
+        return redirect(posted)
+
+
 
 
 

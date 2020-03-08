@@ -9,7 +9,7 @@ urlpatterns = [
     path('posted/',views.posted,name="posted"),
     path('profile/', views.myprofile, name='profile'),
     re_path(r'^image/(\d+)',views.imageid,name ='article'),
-
+    re_path(r'^like/(\d+)', views.like, name='like'),
     re_path(r'^update/profile', views.updatemyprofile, name='update_profile'),
     re_path(r'^comments/(\d+)', views.comment, name='comment'),
 

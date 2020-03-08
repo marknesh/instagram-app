@@ -34,6 +34,8 @@ class Image(models.Model):
     pub_date=models.DateTimeField(auto_now_add=True)
     profile=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     comments_number = models.PositiveIntegerField(default=0)
+    likes = models.PositiveIntegerField(default=0)
+
 
 
     class Meta:
@@ -90,7 +92,41 @@ class Follow(models.Model):
     def save_follower(self):
         self.save()
 
+    @classmethod
+    def get_followers(cls, profile_id):
+        profile = Profile.objects.filter(id=profile_id)
+        followers = cls.objects.filter(user=profile.user.id)
+        return len(followers)
 
+
+class Like(models.Model):
+    '''
+    Class defines the structure of a like on a an posted Image
+    '''
+    user = models.ForeignKey(User,on_delete=models.CASCADE, null= True)
+
+    image = models.ForeignKey(Image,on_delete=models.CASCADE, null = True)
+
+    def __int__(self):
+        return self.user.username
+
+    def save_like(self):
+        self.save()
+
+    def unlike(self):
+        self.delete()
+
+    def like(self):
+        self.likes_number = 2
+        self.save()
+
+    @classmethod
+    def get_likes(cls,image_id):
+        '''
+        Function that get likes belonging to a paticular posts
+        '''
+        likes = cls.objects.filter(image = image_id)
+        return likes
 
 
 
