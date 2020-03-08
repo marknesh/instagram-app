@@ -1,0 +1,46 @@
+{%extends "base.html"%}
+
+{% block content %}
+{{block.super}}
+{% load bootstrap4 %}
+{% load static %}
+
+
+
+{% block styles %}
+{% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/posted.css' %}">
+{% endblock %}
+<body>
+<div class="container">
+<div class="row">
+
+
+
+    <div class="col-md-12">
+<div class="image">
+    {% if profile %}
+        <a href="/">Back</a>
+
+    <img src="{{profile.profile_photo.url}} "  class="img-responsive" >
+</div>
+         {% autoescape on %}
+        <p> {{profile.bio| safe}}</p>
+    {% endautoescape %}
+
+        {% else %}
+
+          <a href="profile/">Create profile</a>
+
+        {% endif %}
+
+
+
+    </div>
+
+
+</div>
+</div>
+
+</body>
+{% endblock %}

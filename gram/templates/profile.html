@@ -1,0 +1,57 @@
+{%extends "base.html"%}
+
+{% block content %}
+{{block.super}}
+{% load bootstrap4 %}
+{% load static %}
+
+
+
+{% block styles %}
+{% bootstrap_css %}
+
+{% endblock %}
+<body>
+<div class="container">
+<div class="row">
+
+
+    <div class="col-md-12">
+
+            {% if profile %}
+                <img src={{profile.profile_photo.url}} class="img-responsive img-rounded" style="float:left; height:300px; width:300px;">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="padding:10px;">
+                <h5 style="font-size:35px;">{{profile.username}}</h5>
+                <p>{{profile.bio}}</p>
+            {% endif %}
+                {% if profile.user == current_user%}
+                <a href="{% url 'update_profile'%}"><button class="btn btn-primary">Edit Profile</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-plus-sign" style="font-size:35px;"></span>
+                </a>
+                {% for posted in posted %}
+    <div class="col-md-12">
+<div class="image">
+
+    <a target="_blank" href="/image/{{posted.id}}"> <img src="{{posted.image.url}} " ></a>
+</div>
+           <h5>
+                            {{posted.comments_number}}  comments<a href="{% url 'comment' posted.id %}"> view comments</a>
+                        </h5>
+          <p>{{posted.pub_date|timesince}}</p>
+
+    </div>
+
+
+{% endfor %}
+                 <h5><span style="font-weight:bolder;">Followers:&nbsp;&nbsp;&nbsp;</span>{{followers | length }}</h5>
+                <h5><span style="font-weight:bolder;">Following:&nbsp;&nbsp;&nbsp;</span>{{following | length }}
+                {% else %} <h3>Profile has not been created yet</h3>
+                <a href="{% url 'update_profile'%}"><button class="btn btn-primary">Create Profile</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% endif %}
+    </div>
+</div>
+
+</body>
+{% endblock %}

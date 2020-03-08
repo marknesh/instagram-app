@@ -1,0 +1,43 @@
+{%extends "base.html"%}
+
+{% block content %}
+{{block.super}}
+{% load bootstrap4 %}
+{% load static %}
+
+
+
+{% block styles %}
+{% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/posted.css' %}">
+{% endblock %}
+<body>
+<div class="container">
+<div class="row">
+
+{% for posted in posted %}
+    <div class="col-md-12">
+<div class="image">
+
+    <a target="_blank" href="/image/{{posted.id}}"> <img src="{{posted.image.url}} " ></a>
+</div>
+           <h5>
+                            {{posted.comments_number}}  comments<a href="{% url 'comment' posted.id %}"> view comments</a>
+                        </h5>
+          <p>{{posted.pub_date|timesince}}</p>
+
+    </div>
+
+
+{% endfor %}
+</div>
+</div>
+
+
+
+
+</body>
+{% endblock %}
+
+
+
