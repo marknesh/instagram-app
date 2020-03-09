@@ -11,7 +11,7 @@
 {% bootstrap_css %}
   <link rel="stylesheet" href="{% static 'css/posted.css' %}">
 {% endblock %}
-<body>
+
 <div class="container">
 <div class="row">
 
@@ -23,17 +23,22 @@
      <a href="{% url 'like' posted.id %}">
                       {{posted.likes}}like
                     </a>
-</div>
+
            <h5>
                             {{posted.comments_number}}  comments<a href="{% url 'comment' posted.id %}"> view comments</a>
                         </h5>
           <p>{{posted.pub_date|timesince}}</p>
+</div>
 
-    </div>
+
+
 
 
 {% endfor %}
 </div>
+
+</div>
+
 </div>
 
 
