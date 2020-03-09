@@ -45,3 +45,10 @@ python3.6 manage.py runserver
 ```
 python3.6 manage.py test
 ```
+
+## Troubleshooting
+If you encounter any problems please feel free to contact me using the contacts provided  below incase you encounter any bugs.
+
+## Support and contact details
+Contact us on : 072432432
+Email us on: neshinstagram@gmail.com
