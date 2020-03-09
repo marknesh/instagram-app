@@ -25,7 +25,7 @@
 
 
                              <p>{{profile.bio}}</p>
-            {% else %} <h3>Profile has not been created yet</h3>
+
             {% endif %}
                 {% if profile.user == current_user%}
                 <a href="{% url 'update_profile'%}"><button class="btn btn-primary">Edit Profile</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

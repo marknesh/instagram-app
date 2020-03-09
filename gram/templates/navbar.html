@@ -34,9 +34,15 @@
               </li>
             </ul>
             </ul>
-           <a href="{% url 'profile' %}">Show profile</a>
-            <a href="{% url 'viewProfiles' %}">Follow People</a>
-               <div class="col-sm-4 col-md-4 navbar-right">
+           <a href="{% url 'profile' %}"><div class="badge badge-success">Show profile</div></a>
+           <a href="{% url 'viewProfiles' %}"><div class="badge badge-success">Follow People</div></a>
+
+          </div>
+     <div class="container-fluid">
+    <div class="navbar-header">
+
+    </div>
+     <div class="col-sm-4 col-md-4 navbar-right">
          <form class="navbar-form" role="search" action="{% url 'search_results' %}">
 
           <div class="input-group">
@@ -49,16 +55,11 @@
         </form>
 
       </div>
-            {% else %}
+  </div>
+    {% else %}
 
             {% endif %}
-          </div>
-  <div class="container-fluid">
-    <div class="navbar-header">
-
-    </div>
-
-  </div>
 </nav>
+
 </body>
 </html>

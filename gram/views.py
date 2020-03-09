@@ -102,9 +102,14 @@ def updatemyprofile(request):
 @login_required
 def myprofile(request):
     current_user = request.user
-    profile = Profile.objects.get(user_id=current_user)
-    following = Follow.objects.filter(follower=current_user)
-    followers = Follow.objects.filter(user=profile)
+    try:
+        profile = Profile.objects.get(user_id=current_user)
+        following = Follow.objects.filter(follower=current_user)
+        followers = Follow.objects.filter(user=profile)
+    except:
+        profile = Profile.objects.filter(user_id=current_user)
+        following = Follow.objects.filter(follower=current_user)
+        followers = Follow.objects.filter(user=profile)
     return render(request, 'profile.html',{"profile": profile, "current_user": current_user, "following": following, "followers": followers,"posted":posted})
 
 
