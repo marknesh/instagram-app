@@ -6,6 +6,7 @@ INSTAGRAM CLONE
 ## Description
 This application is basically a clone for the popular worldwide app known as instagram.
 The user must first sign in inorder to use the application.After signing in the user can see the photos of the people he or she has followed.
+THe user can also see his or her profile.
 
 
 ## Technologies used
