@@ -3,10 +3,16 @@ INSTAGRAM CLONE
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codebeat badge](https://codebeat.co/badges/58531776-29fa-4ca1-91f9-2aa69127a924)](https://codebeat.co/projects/github-com-marknesh-instagram-app-master)
+
+## DB Diagram
+
+![](images/Untitled.png)
+
 ## Description
 This application is basically a clone for the popular worldwide app known as instagram.
 The user must first sign in inorder to use the application.After signing in the user can see the photos of the people he or she has followed.
 THe user can also see his or her profile.
+
 
 
 ## Technologies used
