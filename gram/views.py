@@ -3,7 +3,7 @@ from . models import Image,Profile,Comment,Follow,Like
 from .forms import NewImageForm,CommentForm,ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def homepage(request):
     if request.user.is_authenticated:
         return redirect(posted)
@@ -11,7 +11,7 @@ def homepage(request):
         return  redirect('/accounts/login')
 
 
-
+@login_required
 def photos(request):
     current_user=request.user
     if request.method == 'POST':
@@ -25,10 +25,12 @@ def photos(request):
         form=NewImageForm()
     return  render(request,'createimage.html',{"form":form})
 
-
+@login_required
 def posted(request):
     posted=Image.allimages()
     return  render(request,'posted.html',{"posted":posted})
+
+@login_required
 def imageid(request, image_id):
     try:
         posted = Image.allimages()
@@ -37,7 +39,7 @@ def imageid(request, image_id):
         raise Http404()
     return render(request, "imageid.html", {"image":image,"posted":posted})
 
-
+@login_required
 def comment(request, image_id):
     comments = Comment.objects.filter(image_id=image_id)
     current_image = Image.objects.get(id=image_id)
@@ -66,7 +68,7 @@ def comment(request, image_id):
 
 
 
-
+@login_required
 def updatemyprofile(request):
     current_user = request.user
     try:
@@ -112,7 +114,7 @@ def myprofile(request):
         followers = Follow.objects.filter(user=profile)
     return render(request, 'profile.html',{"profile": profile, "current_user": current_user, "following": following, "followers": followers,"posted":posted})
 
-
+@login_required
 def follow(request,profile_id):
     current_user = request.user
     requested_profile = Profile.objects.get(id = profile_id)
@@ -127,11 +129,13 @@ def follow(request,profile_id):
         follow.delete()
         return redirect(allfollowers)
 
+
+@login_required
 def allfollowers(request):
     allfollowers = Profile.objects.all()
     return render(request,'allfollowers.html',{"allfollowers":allfollowers})
 
-
+@login_required
 def like(request, image_id):
     getimage = Image.objects.get(id=image_id)
     current_user = request.user
@@ -161,8 +165,13 @@ def search_user(request):
         return render(request,"search.html",{"message":message,"searched":searchednames})
 
     else:
-        message="you haven't searched"
-        return render(request,"search.html",{"message":message})
+        if 'name' in request.GET and request.GET["name"]:
+            search_term = request.GET.get("name")
+            searchednames = Profile.findprofile(search_term)
+            message = f"{search_term}"
+            return render(request, "search.html", {"message": message, "searched": searchednames})
+
+
 
 
 
