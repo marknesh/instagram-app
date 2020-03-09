@@ -105,7 +105,7 @@ def myprofile(request):
         profile = Profile.objects.get(username='default_user')
         following = Follow.objects.filter(follower=current_user)
         followers = Follow.objects.filter(user=profile)
-        return render(request, 'profile.html',{"profile": profile, "current_user": current_user, "following": following, "followers": followers,"posted":posted})
+    return render(request, 'profile.html',{"profile": profile, "current_user": current_user, "following": following, "followers": followers,"posted":posted})
 
 
 def follow(request,profile_id):
