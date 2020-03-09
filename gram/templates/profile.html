@@ -9,7 +9,7 @@
 
 {% block styles %}
 {% bootstrap_css %}
-
+  <link rel="stylesheet" href="{% static 'css/posted.css' %}">
 {% endblock %}
 <body>
 <div class="container">
@@ -30,26 +30,8 @@
 
                     <span class="glyphicon glyphicon-plus-sign" style="font-size:35px;"></span>
                 </a>
-                {% for posted in posted %}
-    <div class="col-md-12">
-<div class="image">
-
-    <a target="_blank" href="/image/{{posted.id}}"> <img src="{{posted.image.url}} " ></a>
-</div>
-           <h5>
-                            {{posted.comments_number}}  comments<a href="{% url 'comment' posted.id %}"> view comments</a>
-                        </h5>
-          <p>{{posted.pub_date|timesince}}</p>
-
-    </div>
-
-
-{% endfor %}
-                 <h5><span style="font-weight:bolder;">Followers:&nbsp;&nbsp;&nbsp;</span>{{followers | length }}</h5>
-                <h5><span style="font-weight:bolder;">Following:&nbsp;&nbsp;&nbsp;</span>{{following | length }}
                 {% else %} <h3>Profile has not been created yet</h3>
-                <a href="{% url 'update_profile'%}"><button class="btn btn-primary">Create Profile</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {% endif %}
+                <a href="{% url 'update_profile'%}"><button class="btn btn-primary">Create Profile</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endif %}
     </div>
 </div>
 

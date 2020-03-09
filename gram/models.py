@@ -21,6 +21,10 @@ class Profile(models.Model):
 
     @classmethod
 
+    def findprofile(cls,name):
+        foundprofile=cls.objects.get(username__icontains=name)
+        return foundprofile
+
 
 
     def profileid(cls,id):

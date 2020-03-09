@@ -12,6 +12,7 @@ urlpatterns = [
     re_path(r'^like/(\d+)', views.like, name='like'),
     re_path(r'^update/profile', views.updatemyprofile, name='update_profile'),
     re_path(r'^comments/(\d+)', views.comment, name='comment'),
+    path('search/', views.search_user, name='search_results'),
 
     re_path(r'^follow/(\d+)', views.follow, name='follow'),
     re_path(r'^followers/', views.allfollowers, name='viewProfiles'),

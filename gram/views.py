@@ -97,11 +97,15 @@ def updatemyprofile(request):
 
 def myprofile(request):
     current_user = request.user
-    posted=Image.objects.filter(profile_id=current_user.id)
-    profile = Profile.objects.get(user = current_user)
-    following = Follow.objects.filter(follower=current_user)
-    followers = Follow.objects.filter(user=profile)
-    return render(request, 'profile.html',{"profile": profile, "current_user": current_user, "following": following, "followers": followers,"posted":posted})
+    try:
+        profile = Profile.objects.get(user_id=current_user)
+        following = Follow.objects.filter(follower=current_user)
+        followers = Follow.objects.filter(user=profile)
+    except:
+        profile = Profile.objects.get(username='default_user')
+        following = Follow.objects.filter(follower=current_user)
+        followers = Follow.objects.filter(user=profile)
+        return render(request, 'profile.html',{"profile": profile, "current_user": current_user, "following": following, "followers": followers,"posted":posted})
 
 
 def follow(request,profile_id):
@@ -142,6 +146,18 @@ def like(request, image_id):
         for unlike in unlikedpic:
             unlike.unlike()
         return redirect(posted)
+
+
+def search_user(request):
+    if 'name' in request.GET and request.GET["name"]:
+        search_term=request.GET.get("name")
+        searchednames=Profile.findprofile(search_term)
+        message=f"{search_term}"
+        return render(request,"search.html",{"message":message,"searched":searchednames})
+
+    else:
+        message="you haven't searched"
+        return render(request,"search.html",{"message":message})
 
 
 
