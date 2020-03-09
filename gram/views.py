@@ -88,7 +88,7 @@ def updatemyprofile(request):
             if form.is_valid():
                 createprofile= Profile(profile_photo= form.cleaned_data['profile_photo'],bio = form.cleaned_data['bio'],username = form.cleaned_data['username'],user = current_user)
                 createprofile.save_profile()
-                return redirect( myprofile  )
+
 
 
 
@@ -100,7 +100,7 @@ def updatemyprofile(request):
 
 def myprofile(request):
     current_user = request.user
-    profile = Profile.objects.filter(user = current_user)
+    profile = Profile.objects.get(user_id=current_user)
     following = Follow.objects.filter(follower=current_user)
     followers = Follow.objects.filter(user=profile)
     return render(request, 'profile.html',{"profile": profile, "current_user": current_user, "following": following, "followers": followers,"posted":posted})
