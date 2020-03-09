@@ -22,11 +22,13 @@
   <div class="row">
 
   {% if searched %}
+      {% for search in searched %}
 
       <div class="col-sm-6 col-md-3">
-       <img src="{{searched.profile_photo.url}}" class="img-responsive" >
-          <h1>{{searched.bio}}</h1>
+       <img src="{{search.profile_photo.url}}" class="img-responsive" >
+          <h1>{{search.bio}}</h1>
       </div>
+      {% endfor %}
 
   {% endif %}
   </div>
