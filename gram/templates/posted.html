@@ -18,7 +18,7 @@
 {% for posted in posted %}
     <div class="col-md-12">
 <div class="image">
-    {{posted.profile}}
+    <h2 style="color:green">{{posted.profile}}</h2>
     <a target="_blank" href="/image/{{posted.id}}"> <img src="{{posted.image.url}} " ></a>
      <a href="{% url 'like' posted.id %}">
                        {{posted.likes}}like
