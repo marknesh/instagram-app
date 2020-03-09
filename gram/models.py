@@ -22,7 +22,7 @@ class Profile(models.Model):
     @classmethod
 
     def findprofile(cls,name):
-        foundprofile=cls.objects.get(username__icontains=name)
+        foundprofile=cls.objects.filter(username__icontains=name).all()
         return foundprofile
 
 

@@ -165,13 +165,8 @@ def search_user(request):
         return render(request,"search.html",{"message":message,"searched":searchednames})
 
     else:
-        if 'name' in request.GET and request.GET["name"]:
-            search_term = request.GET.get("name")
-            searchednames = Profile.findprofile(search_term)
-            message = f"{search_term}"
-            return render(request, "search.html", {"message": message, "searched": searchednames})
-
-
+        message="you haven't searched"
+    return render(request,"search.html",{"message":message})
 
 
 
