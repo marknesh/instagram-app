@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,Http404
 from . models import Image,Profile,Comment,Follow,Like
 from .forms import NewImageForm,CommentForm,ProfileUpdateForm
+from django.contrib.auth.decorators import login_required
 
 
 def homepage(request):
@@ -98,6 +99,7 @@ def updatemyprofile(request):
 
     return render(request,'createprofile.html',{"current_user":current_user,"form":form})
 
+@login_required
 def myprofile(request):
     current_user = request.user
     profile = Profile.objects.get(user_id=current_user)
