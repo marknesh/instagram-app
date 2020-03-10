@@ -9,7 +9,7 @@
 
 {% block styles %}
 {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/posted.css' %}">
+
 {% endblock %}
 <body>
 <div class="container">
@@ -29,6 +29,9 @@
             {% endif %}
                 {% if profile.user == current_user%}
                 <a href="{% url 'update_profile'%}"><button class="btn btn-primary">Edit Profile</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <div class="badge badge-warning">Followers:&nbsp;{{followers | length }}</div>
+                <div class="badge badge-warning">Following:&nbsp;{{following | length }}</div>
 
                     <span class="glyphicon glyphicon-plus-sign" style="font-size:35px;"></span>
                 </a>

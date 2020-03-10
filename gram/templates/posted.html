@@ -10,7 +10,7 @@
 {% block styles %}
 {% bootstrap_css %}
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/posted.css' %}">
+
 
 {% endblock %}
 <body>
@@ -25,9 +25,10 @@
     <h2 style="color:green">{{posted.profile}}</h2>
     <a target="_blank" href="/image/{{posted.id}}"> <img src="{{posted.image.url}} " ></a>
      <a href="{% url 'like' posted.id %}">
-                       {{posted.likes}}<i class="fa fa-thumbs-up"></i>
-                    </a>
+
 </div>
+             {{posted.likes}}<i class="fa fa-thumbs-up"></i>
+                    </a>
            <h5>
                             {{posted.comments_number}}  comments<a href="{% url 'comment' posted.id %}"> view comments</a>
                         </h5>
