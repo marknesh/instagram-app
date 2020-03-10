@@ -16,6 +16,13 @@ class ImageTest(TestCase):
         IMage = Image.objects.all()
         self.assertTrue(len(IMage) > 0)
 
+    def test_update_caption(self):
+        self.image.save_image()
+        image = Image.objects.get(image='image_url')
+        image.update_caption('new_caption')
+        image = Image.objects.get(image='image_url')
+        self.assertTrue(image.caption=='new_caption')
+
 
 
 # Create your tests here.

@@ -52,6 +52,10 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
 
+    def update_caption(self,new_caption):
+        self.caption=new_caption
+        self.save()
+
 
     @classmethod
     def allimages(cls):
