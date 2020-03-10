@@ -1,7 +1,14 @@
 {%extends "django_registration/base.html"%}
 {% load bootstrap4 %}
 {% block content %}
+{% load static %}
+{% block styles %}
+{% bootstrap_css %}
 
+  <link rel="stylesheet" href="{% static 'css/posted.css' %}">
+
+{% endblock %}
+<body>
 <div class="container">
   <div class="row">
     <!-- Empty div -->
@@ -46,6 +53,7 @@
 
   </div>
 </div>
+</body>
 <script>
 
     function pageRedirect() {
