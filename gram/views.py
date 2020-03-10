@@ -57,7 +57,6 @@ def comment(request, image_id):
             current_image.comments_number += 1
             current_image.save_image()
             comment.save()
-
             return redirect(posted)
     else:
         form = CommentForm()
