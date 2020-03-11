@@ -1,5 +1,7 @@
 from django import forms
-from .models import Image,Profile,Comment
+from .models import Image,Profile,Comment,Signup
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class NewImageForm(forms.ModelForm):
     class Meta:
@@ -22,3 +24,10 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['comment']
+
+class SignupForm(UserCreationForm):
+    email = forms.EmailField(max_length=200, help_text='Required')
+    class Meta:
+        model=User
+        fields=['username','email','password1','password2']
+
