@@ -2,10 +2,11 @@ from django.db import models
 from django.db import models
 from tinymce.models import HTMLField
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 class Profile(models.Model):
-    profile_photo=models.ImageField(upload_to='profilepics/')
+    profile_photo=CloudinaryField('images')
     bio=HTMLField()
     username = models.CharField(max_length=30,default='User')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -34,7 +35,7 @@ class Profile(models.Model):
 class Image(models.Model):
     title=models.CharField(max_length=20)
     caption=models.CharField(max_length=20)
-    image=models.ImageField(upload_to='images/')
+    image=CloudinaryField('images')
     pub_date=models.DateTimeField(auto_now_add=True)
     profile=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     comments_number = models.PositiveIntegerField(default=0)

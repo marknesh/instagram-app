@@ -18,7 +18,7 @@
 
             {% if profile %}
 
-                <img src={{profile.profile_photo.url}} class="img-responsive img-rounded" style="float:left; height:300px; width:300px;">
+                {% load cloudinary %}{% cloudinary profile.profile_photo.public_id className="my-class"  %}
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="padding:10px;">
                 <h5 style="font-size:35px;">{{profile.username}}</h5>

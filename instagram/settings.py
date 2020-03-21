@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import cloudinary
 from decouple import config
 import django_heroku
 import dj_database_url
@@ -37,6 +38,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'cloudinary',
     'tinymce',
     'bootstrap4',
     'gram.apps.GramConfig',
@@ -141,6 +143,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+cloudinary.config(
+    cloud_name = 'dfjpf16e3',
+    api_key = '616741327242619',
+    api_secret = 'CbIbI3yhTv9fDWsNflPcV-Re4tk'
+)
 
 
 
